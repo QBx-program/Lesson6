@@ -37,9 +37,21 @@ with open('dict.csv', 'w', encoding='UTF-8') as f:
 with open('dict.csv', 'r', encoding='UTF-8') as f:
     print(f.read())
 
-# dict_hobby = {v: None for v in list_arg_user}
-# for i, v in enumerate(list_arg_user):
-#     dict_hobby[list_arg_user[i]] = list_arg_hobby[i]
+# Задача 4*
+
+with open('users.csv', 'r', encoding='UTF-8') as f_u:
+    with open('hobby.csv', 'r', encoding='UTF-8') as f_h:
+        with open('no_dict.csv', 'w', encoding='UTF-8') as f_nd:
+            string_users = f_u.readline().strip()
+            while string_users:
+                string_hobby = f_h.readline().strip()
+                if not string_hobby:
+                    string_hobby = None
+                f_nd.write(f'{string_users}: {string_hobby}\n')
+                string_users = f_u.readline().strip()
+with open('no_dict.csv', 'r', encoding='UTF-8') as f:
+    print(f.read())
+
 
 
 
