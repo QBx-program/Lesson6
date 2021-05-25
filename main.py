@@ -1,4 +1,4 @@
-# Задание 1 и 2*
+print('Задание 1 и 2*')
 
 list_tuple = []
 dict_ip = {}
@@ -15,7 +15,7 @@ with open('nginx_logs.txt', 'r', encoding='UTF-8') as f:
 ip_spam_attempt = max(dict_ip.values())
 print('IP спамера:', *(k for k, v in dict_ip.items() if v == ip_spam_attempt))
 
-# Задание 3
+print('Задание 3')
 
 dict_hobby = {}
 
@@ -37,20 +37,39 @@ with open('dict.csv', 'w', encoding='UTF-8') as f:
 with open('dict.csv', 'r', encoding='UTF-8') as f:
     print(f.read())
 
-# Задача 4*
+print('Задание 4* и 5**')
 
-with open('users.csv', 'r', encoding='UTF-8') as f_u:
-    with open('hobby.csv', 'r', encoding='UTF-8') as f_h:
-        with open('no_dict.csv', 'w', encoding='UTF-8') as f_nd:
-            string_users = f_u.readline().strip()
-            while string_users:
-                string_hobby = f_h.readline().strip()
-                if not string_hobby:
-                    string_hobby = None
-                f_nd.write(f'{string_users}: {string_hobby}\n')
+def run_file(args):
+    if len(args) == 1:
+        users = 'users.csv'
+        hobby = 'hobby.csv'
+        n_dict = 'users_hobby.txt'
+    elif len(args) >= 4:
+        users = args[1]
+        hobby = args[2]
+        n_dict = args[3]
+    with open(users, 'r', encoding='UTF-8') as f_u:
+        with open(hobby, 'r', encoding='UTF-8') as f_h:
+            with open(n_dict, 'w', encoding='UTF-8') as f_nd:
                 string_users = f_u.readline().strip()
-with open('no_dict.csv', 'r', encoding='UTF-8') as f:
-    print(f.read())
+                while string_users:
+                    string_hobby = f_h.readline().strip()
+                    if not string_hobby:
+                        string_hobby = None
+                    f_nd.write(f'{string_users}: {string_hobby}\n')
+                    string_users = f_u.readline().strip()
+    with open(n_dict, 'r', encoding='UTF-8') as f:
+        print(f.read())
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 4:
+        exit(run_file(sys.argv))
+    elif len(sys.argv) > 1 and len(sys.argv) < 4:
+        print('Для работы из командной строки введите следующие аргументы: имя_файла_ФИО имя_файла_хобби имя_файла_записи')
+        exit()
+    else:
+        run_file([''])
 
 
 
