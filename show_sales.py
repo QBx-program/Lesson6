@@ -18,4 +18,10 @@ def bakery_run(args):
 
 if __name__ == '__main__':
     import sys
-    exit(bakery_run(sys.argv))
+    if len(sys.argv) > 1:
+        for i, v in enumerate(sys.argv):
+            if sys.argv[i+1].isdigit():
+                exit(bakery_run(sys.argv))
+            else:
+                print('Введите в аргументы положительные целые числа')
+                break
