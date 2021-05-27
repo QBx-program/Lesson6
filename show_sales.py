@@ -20,8 +20,10 @@ if __name__ == '__main__':
     import sys
     if len(sys.argv) > 1:
         for i, v in enumerate(sys.argv):
-            if sys.argv[i+1].isdigit():
+            if sys.argv[i+1].isdigit() and sys.argv[i+1] <= 0:
                 exit(bakery_run(sys.argv))
             else:
                 print('Введите в аргументы положительные целые числа')
                 break
+    else:
+        exit(bakery_run(sys.argv))
