@@ -1,4 +1,7 @@
-'''Параметры ввода для редактирования: №строки новое_значение'''
+'''
+Параметры ввода для редактирования: №строки
+Длина новой записи не должна быть больше длину существующей
+'''
 
 def edit_sales(args):
     with open('bakery.csv', 'r+', encoding='UTF-8') as f:
@@ -8,7 +11,10 @@ def edit_sales(args):
             if line:
                 if i == v:
                     f.seek(n)
-                    f.writelines(f'{args[2]}\n')
+                    if len(args[2]) > len(line.strip()):
+                        print(f'Длина новой записи [{len(args[2])}] не должна превышать длины существующей [{len(line.strip())}]')
+                    else:
+                        f.writelines(f'{args[2]}\n')
                     break
                 else:
                     n = f.tell()
