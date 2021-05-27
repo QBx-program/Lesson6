@@ -13,8 +13,11 @@ def edit_sales(args):
                     f.seek(n)
                     if len(args[2]) > len(line.strip()):
                         print(f'Длина новой записи [{len(args[2])}] не должна превышать длины существующей [{len(line.strip())}]')
-                    else:
-                        f.writelines(f'{args[2]}\n')
+                    elif len(args[2]) < len(line.strip()):
+                        for i in range(len(line.strip()) - len(args[2])):
+                            args[2] = args[2] + ' '
+                    if len(args[2]) == len(line.strip()):
+                        f.writelines(f'{args[2]}')
                     break
                 else:
                     n = f.tell()
