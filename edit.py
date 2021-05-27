@@ -5,12 +5,18 @@ def edit_sales(args):
         v = int(args[1])
         line = f.readline()
         for i in range(1, v + 1):
-            if i == v:
-                f.seek(n)
-                f.writelines(f'{args[2]}\n')
+            if line:
+                if i == v:
+                    f.seek(n)
+                    f.writelines(f'{args[2]}\n')
+                    break
+                else:
+                    n = f.tell()
+                    line = f.readline()
             else:
-                n = f.tell()
-                line = f.readline()
+                print(f'Всего записей: {i - 1}')
+                break
+
 
 if __name__ == '__main__':
     import sys
