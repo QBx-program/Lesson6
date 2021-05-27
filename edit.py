@@ -1,7 +1,7 @@
 '''Параметры ввода для редактирования: №строки новое_значение'''
 
 def edit_sales(args):
-    with open('bakery.csv', 'r', encoding='UTF-8') as f:
+    with open('bakery.csv', 'r+', encoding='UTF-8') as f:
         v = int(args[1])
         line = f.readline()
         for i in range(1, v + 1):
