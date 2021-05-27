@@ -1,7 +1,7 @@
 '''Параметры ввода для редактирования: №строки новое_значение'''
 
 def edit_sales(args):
-    with open('bakery.csv', 'r+', encoding='UTF-8') as f:
+    with open('bakery.csv', 'r', encoding='UTF-8') as f:
         v = int(args[1])
         line = f.readline()
         for i in range(1, v + 1):
@@ -19,7 +19,6 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1].isdigit() and int(sys.argv[1]) > 0:
         if len(sys.argv) < 3 or sys.argv == '':
             sys.argv.append('   ')
-            print(sys.argv)
         exit(edit_sales(sys.argv))
     elif len(sys.argv) > 1 and (not sys.argv[1].isdigit() or int(sys.argv[1] or not sys.argv[2]) <= 0):
         print('Введите целое положительное число номера строки!')
